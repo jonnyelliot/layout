@@ -7,7 +7,6 @@ export interface FooterProps {
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>
   style?: React.CSSProperties
   children?: ReactNode
-  theme: Theme
 }
 
 const useStyles = makeStyles<Theme>(
