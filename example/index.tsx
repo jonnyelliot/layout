@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { ThemeProvider } from '@commitd/components'
+import { ThemeProvider, Box } from '@commitd/components'
 import { Root, Header, Nav, Content, Footer } from '../dist'
 
 const App = () => (
@@ -15,10 +15,14 @@ const App = () => (
           ctx => null
         }
       >
-        Nav
+        <Box p={3}>Nav</Box>
       </Nav>
-      <Content>Content</Content>
-      <Footer>Footer</Footer>
+      <Content>
+        <Box p={3}>Content</Box>
+      </Content>
+      <Footer>
+        <Box p={3}>Footer</Box>
+      </Footer>
     </Root>
   </ThemeProvider>
 )
