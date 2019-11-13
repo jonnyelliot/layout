@@ -9,24 +9,18 @@ export interface FooterProps {
   children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(
-  ({ breakpoints, palette, spacing, transitions }) => ({
-    root: {
-      borderTop: '1px solid',
-      borderColor: palette.grey[200],
-      background: palette.secondary.main,
-      color: palette.secondary.contrastText,
-      padding: spacing(2),
-      [breakpoints.up('sm')]: {
-        padding: spacing(3)
-      },
-      transition: transitions.create(['margin'], {
-        easing: transitions.easing.sharp,
-        duration: transitions.duration.leavingScreen
-      })
-    }
-  })
-)
+const useStyles = makeStyles<Theme>(({ palette, transitions }) => ({
+  root: {
+    borderTop: '1px solid',
+    borderColor: palette.grey[200],
+    background: palette.primary.main,
+    color: palette.grey[50],
+    transition: transitions.create(['margin'], {
+      easing: transitions.easing.sharp,
+      duration: transitions.duration.leavingScreen
+    })
+  }
+}))
 
 const Footer = ({
   className = '',
