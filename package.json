@@ -1,9 +1,9 @@
 {
   "name": "@commitd/layout",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Committed layout library",
   "author": "Committed",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/layout.esm.js",
   "typings": "dist/index.d.ts",
