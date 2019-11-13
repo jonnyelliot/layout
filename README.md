@@ -1,24 +1,29 @@
 # Committed Components Layout
 
-
 This is a simple layout for standard looking material based apps, based on [Mui Layout](https://mui-treasury.com/components/layout)
 but using `@commitd/components` as its base.
 
-![example](images/layout.png)
+<p align="center">
+  <img src="images/layout.png" style="width: 600px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"/>
+</p>
 
-## Install
+## 🔗 Live Demo
 
-For use with `@commitd/components`,
+Here's a [live demo](https://committed.software/docs)
+
+## 🚀 Quickstart
+
+For use with [`@commitd/components`](https://github.com/commitd/components),
 
 ```bash
 yarn add @commitd/layout
 ```
 
-## Usage
+### Usage
 
 ```tsx
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { ThemeProvider } from '@commitd/components'
 import { Root, Header, Nav, Content, Footer } from '@commitd/layout'
 
@@ -47,8 +52,15 @@ const App = () => (
 ReactDOM.render(<App />, document.getElementById('root'))
 ```
 
+## 📱 Responsive
 
-## Config
+The layout adjusts for small screen sizes.
+
+<p align="center">
+  <img src="images/mobile.png" style="width: 200px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"/>
+</p>
+
+## 📝 Config
 
 For each config parameter a single value or an object with breakpoint keys can be supplied, e.g.
 
@@ -63,7 +75,7 @@ const config = {
 ```
 
 
-## Development
+## 💻 Development
 
 On first use run `yarn install` in both the root folder and the example folder.
 
@@ -81,16 +93,15 @@ yarn start
 
 the same command can be run in the example folder to run a usage example.
 
-## CI
+## 🤖 CI
 
 Pull requests go through CI checks using GitHub actions.
 
-## Credit
+## 👏 Credit
 
 It is based on Mui Layout from https://mui-treasury.com/
 for further reference see https://github.com/siriwatknp/mui-layout.
 
-
-## License
+## ©️ License
 
 [MIT](/LICENSE) - © Committed Software 2019 <https://committed.io>
