@@ -1,5 +1,8 @@
 # Committed Components Layout
 
+[![Committed Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fcommitted.software%2Fbadge)](https://committed.io)
+[![Build Status](https://drone.committed.software/api/badges/commitd/layout/status.svg)](https://drone.committed.software/commitd/layout)
+
 This is a simple layout for standard looking material based apps, based on [Mui Layout](https://mui-treasury.com/components/layout)
 but using `@commitd/components` as its base.
 
@@ -29,10 +32,15 @@ import { Root, Header, Nav, Content, Footer } from '@commitd/layout'
 
 const App = () => (
   <ThemeProvider>
-    <Root style={{ minHeight: '100vh' }} config={{
-       // adjust behavior here!
-       // See LayoutConfig
-    }}>
+    <Root
+      style={{ minHeight: '100vh' }}
+      config={
+        {
+          // adjust behavior here!
+          // See LayoutConfig
+        }
+      }
+    >
       <Header>Header</Header>
       <Nav
         header={
@@ -73,7 +81,6 @@ const config = {
     }
 }
 ```
-
 
 ## 💻 Development
 
