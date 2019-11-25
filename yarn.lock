@@ -686,9 +686,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commitd/components@^0.0.19":
-  version "0.0.19"
-  resolved "https://npm.pkg.github.com/download/@commitd/components/0.0.19/fa533286405acfc778be47ecc3edae1a9f5efb50e6f405ef9aebe5f139f05f2e#"
+"@commitd/components@^0.0.23":
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/@commitd/components/-/components-0.0.23.tgz#89f785d59b77207a8e82f5bc4c9a492545ba3140"
+  integrity sha512-ZffCcWQyFpPPKGkkro4W22lCtaPD6Z9SE5/Vk77qQdNy3isExAHfoAwRBqzdd1aBy3JifFAK1Z5sgQ2r8DgjwA==
   dependencies:
     clsx "^1.0.4"
 

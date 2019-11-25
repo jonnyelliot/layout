@@ -7,9 +7,8 @@ steps:
   - name: npm_auth
     image: robertstettner/drone-npm-auth
     settings:
-      registry: npm.pkg.github.com
       token:
-        from_secret: github_token
+        from_secret: npm_token
 
   - name: build
     image: node:latest
@@ -20,7 +19,7 @@ steps:
   - name: publish
     image: node:latest
     commands:
-      - yarn publish
+      - npm publish --access public
     when:
       ref:
         - refs/tags/v*
