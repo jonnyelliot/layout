@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { ThemeProvider, Box } from '@commitd/components'
+import { ThemeProvider, Box } from '@committed/components'
 import { Root, Header, Nav, Content, Footer } from '../dist'
 
 const App = () => (

@@ -59,7 +59,7 @@ steps:
       webhook:
         from_secret: slack_webhook
       template: >
-        :tada: New version ${DRONE_TAG} of `@commitd/layout` available https://github.com/commitd/layout
+        :tada: New version ${DRONE_TAG} of `/layout` available https://github.com/commitd/layout
     when:
       ref:
         - refs/tags/v*

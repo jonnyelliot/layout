@@ -7,7 +7,7 @@ import {
   Theme,
   Icons,
   makeStyles
-} from '@commitd/components'
+} from '@committed/components'
 import { LayoutContext } from './Root'
 
 const useStyles = makeStyles<Theme>(

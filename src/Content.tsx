@@ -1,5 +1,5 @@
 import React, { useContext, ReactNode } from 'react'
-import { Theme, makeStyles } from '@commitd/components'
+import { Theme, makeStyles } from '@committed/components'
 import { LayoutContext } from './Root'
 
 const useStyles = makeStyles<Theme>(({ transitions }) => ({

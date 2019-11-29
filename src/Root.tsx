@@ -1,6 +1,6 @@
 import React, { useState, useMemo, CSSProperties } from 'react'
 import presets, { LayoutConfig, getScreenValue } from './util'
-import { useWidth, makeStyles } from '@commitd/components'
+import { useWidth, makeStyles } from '@committed/components'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 
 export interface RootProps {

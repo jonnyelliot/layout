@@ -686,10 +686,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commitd/components@^0.0.23":
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/@commitd/components/-/components-0.0.23.tgz#89f785d59b77207a8e82f5bc4c9a492545ba3140"
-  integrity sha512-ZffCcWQyFpPPKGkkro4W22lCtaPD6Z9SE5/Vk77qQdNy3isExAHfoAwRBqzdd1aBy3JifFAK1Z5sgQ2r8DgjwA==
+"@committed/components@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@committed/components/-/components-1.0.0.tgz#3748b7f94d6c1b6db9cfea3df409e5ed782788f4"
+  integrity sha512-GNejpQ4Y2bNOZep1iUrMQQcnciE8Aw9CZo2pJdGvatKIns24VWsG0H4LMzdlUaAEK7lg6xLbVd5/fyyZ6ddh8w==
   dependencies:
     clsx "^1.0.4"
 

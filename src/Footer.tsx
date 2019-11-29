@@ -1,6 +1,6 @@
 import React, { useContext, ReactNode } from 'react'
 import { LayoutContext } from './Root'
-import { Theme, makeStyles } from '@commitd/components'
+import { Theme, makeStyles } from '@committed/components'
 
 export interface FooterProps {
   className?: string

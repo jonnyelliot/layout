@@ -4,7 +4,7 @@
 [![Build Status](https://drone.committed.software/api/badges/commitd/layout/status.svg)](https://drone.committed.software/commitd/layout)
 
 This is a simple layout for standard looking material based apps, based on [Mui Layout](https://mui-treasury.com/components/layout)
-but using `@commitd/components` as its base.
+but using `@committed/components` as its base.
 
 <p align="center">
   <img src="images/layout.png" style="width: 600px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"/>
@@ -16,10 +16,16 @@ Here's a [live demo](https://committed.software/docs)
 
 ## 🚀 Quickstart
 
-For use with [`@commitd/components`](https://github.com/commitd/components),
+For use with [`@committed/components`](https://github.com/commitd/components),
 
 ```bash
-yarn add @commitd/layout
+yarn add @committed/layout
+```
+
+add any missing peer dependencies
+
+```bash
+yarn add @committed/components @material-ui/core @material-ui/icons react react-dom
 ```
 
 ### Usage
@@ -27,8 +33,8 @@ yarn add @commitd/layout
 ```tsx
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ThemeProvider } from '@commitd/components'
-import { Root, Header, Nav, Content, Footer } from '@commitd/layout'
+import { ThemeProvider } from '@committed/components'
+import { Root, Header, Nav, Content, Footer } from '/layout'
 
 const App = () => (
   <ThemeProvider>
@@ -72,13 +78,13 @@ The layout adjusts for small screen sizes.
 
 For each config parameter a single value or an object with breakpoint keys can be supplied, e.g.
 
-```
+```javascript
 const config = {
-   navWidth: {
-      // xs is 256px by default
-      sm: 200, // in sm
-      md: 256, // mdUp
-    }
+  navWidth: {
+    // xs is 256px by default
+    sm: 200, // in sm
+    md: 256 // mdUp
+  }
 }
 ```
 

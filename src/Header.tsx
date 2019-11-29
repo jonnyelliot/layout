@@ -8,7 +8,7 @@ import {
   Icons,
   makeStyles,
   useTheme
-} from '@commitd/components'
+} from '@committed/components'
 import { LayoutContext } from './Root'
 import { Layout, Position } from './util'
 
