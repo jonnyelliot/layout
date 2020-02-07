@@ -58,6 +58,7 @@ export interface NavProps {
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>
   children?: ReactNode
   header?: ReactNode
+  closeButtonProps?: any
   collapsedIcon?: {
     active: ReactNode
     inactive: ReactNode
@@ -73,6 +74,7 @@ const Nav = ({
     inactive: <Icons.ChevronLeft />
   },
   children,
+  closeButtonProps = {},
   ...props
 }: NavProps) => {
   const classes = useStyles()
@@ -127,6 +129,7 @@ const Nav = ({
           className={classes.closeButton}
           style={{ left: navWidth + 16 }}
           onClick={setOpen}
+          {...closeButtonProps}
         >
           {collapsedIcon.inactive}
         </IconButton>
