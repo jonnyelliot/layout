@@ -18,6 +18,7 @@ export type HeaderProps = {
   position?: Position
   children?: ReactNode
   toolbarProps?: any
+  menuButtonProps?: any
   menuIcon?: {
     active: ReactNode
     inactive: ReactNode
@@ -82,7 +83,8 @@ const Header = ({
   style = {},
   color = 'primary',
   children,
-  toolbarProps = {}
+  toolbarProps = {},
+  menuButtonProps = {}
 }: HeaderProps) => {
   const theme = useTheme<Theme>()
   const classes = useStyles()
@@ -126,6 +128,7 @@ const Header = ({
             color="inherit"
             onClick={setOpen}
             className={classes.menuButton}
+            {...menuButtonProps}
           >
             {open ? menuIcon.active : menuIcon.inactive || menuIcon.active}
           </IconButton>
