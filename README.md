@@ -88,6 +88,57 @@ const config = {
 }
 ```
 
+## Props
+
+### Root.config
+
+|Prop|Type|Description|Default Value|
+|-|-|-|-|
+|clipped|boolean \| ScreenProps\<boolean>|Clipped moves the header over the top of the navigation drawer, unclipped makes navigation full height|false
+|collapsible|boolean \| ScreenProps\<boolean>|Can the navigation be collapsed to a smaller form|true|
+|collapsedWidth|number \| ScreenProps\<number>|Width of the collapsed navigation|64|
+|footerShrink|boolean \| ScreenProps\<boolean>|Footer to adjust the size to fit when nav expanded,set false to keep the same width and overflow the screen.|true|
+|navAnchor|Orientation \| ScreenProps\<Orientation>|Which side of the screen to show the nav panel|left|
+|navVariant|Variant \| ScreenProps\<Variant>|**Permanent**: stays all the time. **Persistent**: remains open but can be hidden with button. **Temporary**: hides on click away (and selection).|permanent|
+|navWidth|number \| ScreenProps\<number>|Width of the navigation drawer|256|
+|headerPosition|Position \| ScreenProps\<Position>|Position applied to the AppBar header. one of 'static', 'relative', 'sticky', 'fixed', 'absolute' See https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning|relative|
+|squeezed|boolean \| ScreenProps\<>|Both header and content adjust the size to fit when nav expanded, set false to keep the same width and overflow the screen.|boolean|
+
+### Root.component
+
+### Nav.component
+### Nav.header
+`ReactNode`
+### Nav.closeButtonProps
+Props to pass to the underlying Close Button. `IconButtonProps`
+### Nav.collapsedIcon
+```
+{
+    active: ReactNode
+    inactive: ReactNode
+}
+```
+
+### Content.component
+
+### Header.position
+One of 'static', 'relative', 'sticky', 'fixed', 'absolute'. See `Root.headerPosition`.
+### Header.toolbarProps
+Props to pass to the underlying Toolbar. `commitd/components ToolbarProps`
+### Header.menuButtonProps
+Props to pass to the underlying Menu Button. `IconButtonProps`
+### Header.menuIcon
+```
+{
+    active: ReactNode
+    inactive: ReactNode
+}
+```
+### Header.color
+
+### Footer.component
+
+
 ## 💻 Development
 
 On first use run `yarn install` in both the root folder and the example folder.
