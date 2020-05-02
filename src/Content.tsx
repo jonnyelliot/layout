@@ -1,5 +1,10 @@
-import React, { useContext, ReactNode } from 'react'
-import { Theme, makeStyles } from '@committed/components'
+import React, {
+  useContext,
+  ReactNode,
+  ElementType,
+  HTMLAttributes
+} from 'react'
+import { Theme, makeStyles } from '@material-ui/core'
 import { LayoutContext } from './Root'
 
 const useStyles = makeStyles<Theme>(({ transitions }) => ({
@@ -15,7 +20,7 @@ const useStyles = makeStyles<Theme>(({ transitions }) => ({
 export interface ContentProps {
   className?: string
   style?: any
-  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>
+  component?: ElementType<HTMLAttributes<HTMLElement>>
   children?: ReactNode
 }
 

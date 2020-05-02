@@ -1,28 +1,25 @@
-import React, { useContext, ReactNode } from 'react'
+import React, { useContext, ReactNode, CSSProperties } from 'react'
 import { PropTypes } from '@material-ui/core'
 import {
   AppBar,
   Toolbar,
   IconButton,
   Theme,
-  Icons,
   makeStyles,
   useTheme
-} from '@committed/components'
+} from '@material-ui/core'
 import { LayoutContext } from './Root'
 import { Layout, Position } from './util'
 
 export type HeaderProps = {
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
   position?: Position
   children?: ReactNode
   toolbarProps?: any
   menuButtonProps?: any
-  menuIcon?: {
-    active: ReactNode
-    inactive: ReactNode
-  }
+  chevronLeftIcon: ReactNode
+  menuIcon: ReactNode
   color?: PropTypes.Color
 }
 
@@ -76,10 +73,8 @@ const createGet = (
 
 const Header = ({
   className = '',
-  menuIcon = {
-    active: <Icons.ChevronLeft />,
-    inactive: <Icons.Menu />
-  },
+  chevronLeftIcon,
+  menuIcon,
   style = {},
   color = 'primary',
   children,
@@ -130,7 +125,7 @@ const Header = ({
             className={classes.menuButton}
             {...menuButtonProps}
           >
-            {open ? menuIcon.active : menuIcon.inactive || menuIcon.active}
+            {open ? chevronLeftIcon : menuIcon || chevronLeftIcon}
           </IconButton>
         )}
         {typeof children === 'function' ? children(ctx) : children}

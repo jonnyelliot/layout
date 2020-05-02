@@ -1,11 +1,17 @@
-import React, { useContext, ReactNode } from 'react'
+import React, {
+  useContext,
+  ReactNode,
+  ElementType,
+  HTMLAttributes,
+  CSSProperties
+} from 'react'
 import { LayoutContext } from './Root'
-import { Theme, makeStyles } from '@committed/components'
+import { Theme, makeStyles } from '@material-ui/core'
 
 export interface FooterProps {
   className?: string
-  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>
-  style?: React.CSSProperties
+  component?: ElementType<HTMLAttributes<HTMLElement>>
+  style?: CSSProperties
   children?: ReactNode
 }
 

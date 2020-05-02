@@ -1,18 +1,27 @@
-import React, { useState, useMemo, CSSProperties } from 'react'
+import React, {
+  useState,
+  useMemo,
+  CSSProperties,
+  createContext,
+  HTMLAttributes,
+  ReactNode,
+  ElementType
+} from 'react'
 import presets, { LayoutConfig, getScreenValue } from './util'
-import { useWidth, makeStyles } from '@committed/components'
+import { makeStyles, CssBaseline } from '@material-ui/core'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
+import { useWidth } from './useWidth'
 
 export interface RootProps {
   className?: string
-  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>
+  component?: ElementType<HTMLAttributes<HTMLElement>>
   config?: Partial<LayoutConfig>
   style?: CSSProperties
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 const initialConfig = presets.createDefaultLayout()
-export const LayoutContext = React.createContext(presets.defaultContext())
+export const LayoutContext = createContext(presets.defaultContext())
 
 const useStyles = makeStyles({
   root: {
@@ -21,7 +30,7 @@ const useStyles = makeStyles({
   }
 })
 
-const createContext = (
+const createNewContext = (
   config: Partial<LayoutConfig>,
   width: Breakpoint,
   open: boolean,
@@ -88,12 +97,14 @@ const Root = ({
   const [open, setOpen] = useState(false)
 
   const value = useMemo(
-    () => createContext(config, width, open, collapsed, setOpen, setCollapsed),
+    () =>
+      createNewContext(config, width, open, collapsed, setOpen, setCollapsed),
     [config, width, open, collapsed]
   )
 
   return (
     <LayoutContext.Provider value={value}>
+      <CssBaseline />
       <Component className={`${className} ${classes.root}`} {...props}>
         {typeof children === 'function' ? children(value) : children}
       </Component>

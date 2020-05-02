@@ -1,13 +1,19 @@
-import React, { useContext, useRef, ReactNode } from 'react'
+import React, {
+  useContext,
+  useRef,
+  ReactNode,
+  ElementType,
+  HTMLAttributes,
+  Fragment
+} from 'react'
 import {
   Grow,
   Drawer,
   Button,
   IconButton,
   Theme,
-  Icons,
   makeStyles
-} from '@committed/components'
+} from '@material-ui/core'
 import { LayoutContext } from './Root'
 
 const useStyles = makeStyles<Theme>(
@@ -55,24 +61,20 @@ const useStyles = makeStyles<Theme>(
 
 export interface NavProps {
   className?: string
-  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>
+  component?: ElementType<HTMLAttributes<HTMLElement>>
   children?: ReactNode
   header?: ReactNode
   closeButtonProps?: any
-  collapsedIcon?: {
-    active: ReactNode
-    inactive: ReactNode
-  }
+  chevronLeftIcon: ReactNode
+  chevronRightIcon: ReactNode
 }
 
 const Nav = ({
   className = '',
   component: Component = 'div',
   header = null,
-  collapsedIcon = {
-    active: <Icons.ChevronRight />,
-    inactive: <Icons.ChevronLeft />
-  },
+  chevronLeftIcon,
+  chevronRightIcon,
   children,
   closeButtonProps = {},
   ...props
@@ -94,10 +96,10 @@ const Nav = ({
     if (collapsible && collapsed) return collapsedWidth
     return navWidth
   }
-  const shouldRenderButton = collapsible && collapsedIcon
+  const shouldRenderButton = collapsible
   const contentRef = useRef(null)
   return (
-    <React.Fragment>
+    <Fragment>
       <Drawer
         {...props}
         className={`${className} ${classes.root}`}
@@ -117,24 +119,22 @@ const Nav = ({
               fullWidth
               onClick={setCollapsed}
             >
-              {collapsed
-                ? collapsedIcon.active
-                : collapsedIcon.inactive || collapsedIcon.active}
+              {collapsed ? chevronRightIcon : chevronLeftIcon}
             </Button>
           )}
         </Component>
       </Drawer>
-      <Grow in={open && navVariant === 'temporary' && !!collapsedIcon}>
+      <Grow in={open && navVariant === 'temporary'}>
         <IconButton
           className={classes.closeButton}
           style={{ left: navWidth + 16 }}
           onClick={setOpen}
           {...closeButtonProps}
         >
-          {collapsedIcon.inactive}
+          {chevronLeftIcon}
         </IconButton>
       </Grow>
-    </React.Fragment>
+    </Fragment>
   )
 }
 

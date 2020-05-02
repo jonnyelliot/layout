@@ -34,33 +34,46 @@ yarn add @committed/components @material-ui/core @material-ui/icons react react-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ThemeProvider } from '@committed/components'
-import { Root, Header, Nav, Content, Footer } from '/layout'
+import { Root, Header, Nav, NavListItem, Content, Footer, LayoutConfig } from '@committed/layout'
+import ChevronRight from '@material-ui/icons/ChevronRight'
+import ChevronLeft from '@material-ui/icons/ChevronLeft'
+import Menu from '@material-ui/icons/Menu'
+
+const config: Partial<LayoutConfig> = {
+  // Only permanently show nav drawer at higher resolutions
+  navVariant: {
+    xs: 'temporary',
+    sm: 'temporary',
+    lg: 'permanent',
+    xl: 'permanent'
+  }
+}
 
 const App = () => (
-  <ThemeProvider>
-    <Root
-      style={{ minHeight: '100vh' }}
-      config={
-        {
-          // adjust behavior here!
-          // See LayoutConfig
-        }
-      }
-    >
-      <Header>Header</Header>
-      <Nav
-        header={
-          // you can provide fixed header inside nav
-          // change null to some react element
-          ctx => null
-        }
-      >
-        Nav
-      </Nav>
-      <Content>Content</Content>
-      <Footer>Footer</Footer>
-    </Root>
-  </ThemeProvider>
+   <ThemeProvider theme={theme}>
+      <Root style={{ minHeight: '100vh' }} config={config}>
+        <Header chevronLeftIcon={<ChevronLeft />} menuIcon={<Menu />}>
+          <Typography variant="h5">Application Name</Typography>
+        </Header>
+        <Nav
+          header={
+            ctx => null
+          }
+          chevronLeftIcon={<ChevronLeft />}
+          chevronRightIcon={<ChevronRight />}
+        >
+          <List>
+            <NavListItem text="Menu Item 1" icon={<AccountCircle />} />
+          </List>
+        </Nav>
+        <Content>
+          Content
+        </Content>
+        <Footer>
+          Footer
+        </Footer>
+      </Root>
+    </ThemeProvider>
 )
 
 ReactDOM.render(<App />, document.getElementById('root'))
@@ -111,13 +124,16 @@ const config = {
 `ReactNode`
 ### Nav.closeButtonProps
 Props to pass to the underlying Close Button. `IconButtonProps`
-### Nav.collapsedIcon
-```
-{
-    active: ReactNode
-    inactive: ReactNode
-}
-```
+## Nav.chevronLeftIcon
+Icon to collapse the menu drawer.
+## Nav.chevronRightIcon
+Icon to expand the menu drawer.
+### NavListItem
+See @material/ui ListItem Props. In Addition, see below:
+## NavListItem.listItemIconProps
+See @material/ui ListItemIcon Props
+## NavListItem.listItemTextProps
+See @material/ui ListItemText Props
 
 ### Content.component
 
@@ -127,13 +143,10 @@ One of 'static', 'relative', 'sticky', 'fixed', 'absolute'. See `Root.headerPosi
 Props to pass to the underlying Toolbar. `commitd/components ToolbarProps`
 ### Header.menuButtonProps
 Props to pass to the underlying Menu Button. `IconButtonProps`
+### Header.chevronLeftIcon
+Icon to close the menu drawer.
 ### Header.menuIcon
-```
-{
-    active: ReactNode
-    inactive: ReactNode
-}
-```
+Icon to open the menu drawer.
 ### Header.color
 
 ### Footer.component
