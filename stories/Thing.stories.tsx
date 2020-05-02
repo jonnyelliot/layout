@@ -12,13 +12,21 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText,
-  CssBaseline
+  ListItemText
 } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
+import {
+  withKnobs,
+  text,
+  boolean,
+  number,
+  select
+} from '@storybook/addon-knobs'
+import { Variant, Orientation } from '../src/util'
 
 export default {
-  title: 'Example'
+  title: 'Example',
+  decorators: [withKnobs]
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -36,14 +44,39 @@ export const Default = () => {
       <Root
         style={{ minHeight: '100vh' }}
         config={{
-          clipped: false,
-          collapsedWidth: 64,
-          collapsible: true,
-          footerShrink: true,
+          clipped: boolean('clipped', false),
+          collapsedWidth: number('collapsedWidth', 64, {
+            range: true,
+            min: 0,
+            max: 512,
+            step: 1
+          }),
+          collapsible: boolean('collapsible', true),
+          footerShrink: boolean('footerShrink', true),
           headerPosition: 'relative',
-          navAnchor: 'left',
-          navVariant: 'permanent',
-          navWidth: 256,
+          navAnchor: select(
+            'navAnchor',
+            {
+              left: 'left',
+              right: 'right'
+            },
+            'left'
+          ) as Orientation,
+          navVariant: select(
+            'navVariant',
+            {
+              permanent: 'permanent',
+              temporary: 'temporary',
+              persistent: 'persistent'
+            },
+            'permanent'
+          ) as Variant,
+          navWidth: number('navWidth', 256, {
+            range: true,
+            min: 0,
+            max: 512,
+            step: 1
+          }),
           squeezed: false
         }}
       >
@@ -82,7 +115,9 @@ export const Default = () => {
               <Box mb={2}>
                 <Typography variant="h4">@committed/layout</Typography>
               </Box>
-              <Typography variant="body1">Some text</Typography>
+              <Typography variant="body1">
+                Use the knobs tab below to try out different props!
+              </Typography>
             </Box>
           </Container>
         </Content>
