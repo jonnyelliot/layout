@@ -1,183 +1,184 @@
-# TSDX React User Guide
+# Committed Components Layout
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+[![Committed Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fcommitted.software%2Fbadge)](https://committed.io)
+[![Build Status](https://drone.committed.software/api/badges/commitd/layout/status.svg)](https://drone.committed.software/commitd/layout)
 
-> This TSDX setup is meant for developing React components (not apps!) that can be published to NPM. If you’re looking to build an app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+This is a simple layout for standard looking material based apps, based on [Mui Layout](https://mui-treasury.com/components/layout)
+but using `@committed/components` as its base.
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+<p align="center">
+  <img src="images/layout.png" style="width: 600px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"/>
+</p>
 
-## Commands
+## 🔗 Live Demo
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
+Here's a [live demo](https://committed.software/docs)
 
-The recommended workflow is to run TSDX in one terminal:
+## 🚀 Quickstart
 
-```
-npm start # or yarn start
-```
+For use with [`@committed/components`](https://github.com/commitd/components),
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
-
-Then run either example playground or storybook:
-
-### Storybook
-
-Run inside another terminal:
-
-```
-yarn storybook
+```bash
+yarn add @committed/layout
 ```
 
-This loads the stories from `./stories`.
+add any missing peer dependencies
 
-> NOTE: Stories should reference the components as if using the library, similar to the example playground. This means importing from the root project directory. This has been aliased in the tsconfig and the storybook webpack config as a helper.
-
-### Example
-
-Then run the example inside another:
-
-```
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
+```bash
+yarn add @committed/components @material-ui/core @material-ui/icons react react-dom
 ```
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, [we use Parcel's aliasing](https://github.com/palmerhq/tsdx/pull/88/files).
+### Usage
 
-To do a one-off build, use `npm run build` or `yarn build`.
+```tsx
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { ThemeProvider } from '@committed/components'
+import { Root, Header, Nav, NavListItem, Content, Footer, LayoutConfig } from '@committed/layout'
+import ChevronRight from '@material-ui/icons/ChevronRight'
+import ChevronLeft from '@material-ui/icons/ChevronLeft'
+import Menu from '@material-ui/icons/Menu'
 
-To run tests, use `npm test` or `yarn test`.
+const config: Partial<LayoutConfig> = {
+  // Only permanently show nav drawer at higher resolutions
+  navVariant: {
+    xs: 'temporary',
+    sm: 'temporary',
+    lg: 'permanent',
+    xl: 'permanent'
+  }
+}
 
-## Configuration
+const App = () => (
+   <ThemeProvider theme={theme}>
+      <Root style={{ minHeight: '100vh' }} config={config}>
+        <Header chevronLeftIcon={<ChevronLeft />} menuIcon={<Menu />}>
+          <Typography variant="h5">Application Name</Typography>
+        </Header>
+        <Nav
+          header={
+            ctx => null
+          }
+          chevronLeftIcon={<ChevronLeft />}
+          chevronRightIcon={<ChevronRight />}
+        >
+          <List>
+            <NavListItem text="Menu Item 1" icon={<AccountCircle />} />
+          </List>
+        </Nav>
+        <Content>
+          Content
+        </Content>
+        <Footer>
+          Footer
+        </Footer>
+      </Root>
+    </ThemeProvider>
+)
 
-Code quality is [set up for you](https://github.com/palmerhq/tsdx/pull/45/files) with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`. This runs the test watcher (Jest) in an interactive mode. By default, runs tests related to files changed since the last commit.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
+ReactDOM.render(<App />, document.getElementById('root'))
 ```
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
 
-#### React Testing Library
+## 📱 Responsive
 
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
+The layout adjusts for small screen sizes.
 
-### Rollup
+<p align="center">
+  <img src="images/mobile.png" style="width: 200px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"/>
+</p>
 
-TSDX uses [Rollup v1.x](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
+## 📝 Config
 
-### TypeScript
+For each config parameter a single value or an object with breakpoint keys can be supplied, e.g.
 
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### Travis
-
-_to be completed_
-
-### Circle
-
-_to be completed_
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
+```javascript
+const config = {
+  navWidth: {
+    // xs is 256px by default
+    sm: 200, // in sm
+    md: 256 // mdUp
+  }
 }
 ```
 
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
+## Props
 
-## Module Formats
+### Root.config
 
-CJS, ESModules, and UMD module formats are supported.
+|Prop|Type|Description|Default Value|
+|-|-|-|-|
+|clipped|boolean \| ScreenProps\<boolean>|Clipped moves the header over the top of the navigation drawer, unclipped makes navigation full height|false
+|collapsible|boolean \| ScreenProps\<boolean>|Can the navigation be collapsed to a smaller form|true|
+|collapsedWidth|number \| ScreenProps\<number>|Width of the collapsed navigation|64|
+|footerShrink|boolean \| ScreenProps\<boolean>|Footer to adjust the size to fit when nav expanded,set false to keep the same width and overflow the screen.|true|
+|navAnchor|Orientation \| ScreenProps\<Orientation>|Which side of the screen to show the nav panel|left|
+|navVariant|Variant \| ScreenProps\<Variant>|**Permanent**: stays all the time. **Persistent**: remains open but can be hidden with button. **Temporary**: hides on click away (and selection).|permanent|
+|navWidth|number \| ScreenProps\<number>|Width of the navigation drawer|256|
+|headerPosition|Position \| ScreenProps\<Position>|Position applied to the AppBar header. one of 'static', 'relative', 'sticky', 'fixed', 'absolute' See https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning|relative|
+|squeezed|boolean \| ScreenProps\<>|Both header and content adjust the size to fit when nav expanded, set false to keep the same width and overflow the screen.|boolean|
 
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
+### Root.component
 
-## Using the Playground
+### Nav.component
+### Nav.header
+`ReactNode`
+### Nav.closeButtonProps
+Props to pass to the underlying Close Button. `IconButtonProps`
+## Nav.chevronLeftIcon
+Icon to collapse the menu drawer.
+## Nav.chevronRightIcon
+Icon to expand the menu drawer.
+### NavListItem
+See @material/ui ListItem Props. In Addition, see below:
+## NavListItem.listItemIconProps
+See @material/ui ListItemIcon Props
+## NavListItem.listItemTextProps
+See @material/ui ListItemText Props
 
-```
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
-```
+### Content.component
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**!
+### Header.position
+One of 'static', 'relative', 'sticky', 'fixed', 'absolute'. See `Root.headerPosition`.
+### Header.toolbarProps
+Props to pass to the underlying Toolbar. `commitd/components ToolbarProps`
+### Header.menuButtonProps
+Props to pass to the underlying Menu Button. `IconButtonProps`
+### Header.chevronLeftIcon
+Icon to close the menu drawer.
+### Header.menuIcon
+Icon to open the menu drawer.
+### Header.color
 
-## Deploying the Playground
+### Footer.component
 
-The Playground is just a simple [Parcel](https://parceljs.org) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
+
+## 💻 Development
+
+On first use run `yarn install` in both the root folder and the example folder.
+
+The main build is currently performed using Rollup:
 
 ```bash
-cd example # if not already in the example folder
-npm run build # builds to dist
-netlify deploy # deploy the dist folder
+yarn build
 ```
 
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
+For development use
 
 ```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
+yarn start
 ```
 
-## Named Exports
+the same command can be run in the example folder to run a usage example.
 
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
+## 🤖 CI
 
-## Including Styles
+Pull requests go through CI checks using GitHub actions.
 
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
+## 👏 Credit
 
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
+It is based on Mui Layout from https://mui-treasury.com/
+for further reference see https://github.com/siriwatknp/mui-layout.
 
-## Publishing to NPM
+## ©️ License
 
-We recommend using https://github.com/sindresorhus/np.
-
-## Usage with Lerna
-
-When creating a new package with TSDX within a project set up with Lerna, you might encounter a `Cannot resolve dependency` error when trying to run the `example` project. To fix that you will need to make changes to the `package.json` file _inside the `example` directory_.
-
-The problem is that due to the nature of how dependencies are installed in Lerna projects, the aliases in the example project's `package.json` might not point to the right place, as those dependencies might have been installed in the root of your Lerna project.
-
-Change the `alias` to point to where those packages are actually installed. This depends on the directory structure of your Lerna project, so the actual path might be different from the diff below.
-
-```diff
-   "alias": {
--    "react": "../node_modules/react",
--    "react-dom": "../node_modules/react-dom"
-+    "react": "../../../node_modules/react",
-+    "react-dom": "../../../node_modules/react-dom"
-   },
-```
-
-An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+[MIT](/LICENSE) - © Committed Software 2019 <https://committed.io>

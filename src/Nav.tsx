@@ -15,8 +15,6 @@ import {
   makeStyles
 } from '@material-ui/core'
 import { LayoutContext } from './Root'
-import ChevronRight from '@material-ui/icons/ChevronRight'
-import ChevronLeft from '@material-ui/icons/ChevronLeft'
 
 const useStyles = makeStyles<Theme>(
   ({ breakpoints, transitions, palette, spacing, zIndex, shadows }) => ({
@@ -67,20 +65,16 @@ export interface NavProps {
   children?: ReactNode
   header?: ReactNode
   closeButtonProps?: any
-  collapsedIcon?: {
-    active: ReactNode
-    inactive: ReactNode
-  }
+  chevronLeftIcon: ReactNode
+  chevronRightIcon: ReactNode
 }
 
 const Nav = ({
   className = '',
   component: Component = 'div',
   header = null,
-  collapsedIcon = {
-    active: <ChevronRight />,
-    inactive: <ChevronLeft />
-  },
+  chevronLeftIcon,
+  chevronRightIcon,
   children,
   closeButtonProps = {},
   ...props
@@ -102,7 +96,7 @@ const Nav = ({
     if (collapsible && collapsed) return collapsedWidth
     return navWidth
   }
-  const shouldRenderButton = collapsible && collapsedIcon
+  const shouldRenderButton = collapsible
   const contentRef = useRef(null)
   return (
     <Fragment>
@@ -125,21 +119,19 @@ const Nav = ({
               fullWidth
               onClick={setCollapsed}
             >
-              {collapsed
-                ? collapsedIcon.active
-                : collapsedIcon.inactive || collapsedIcon.active}
+              {collapsed ? chevronRightIcon : chevronLeftIcon}
             </Button>
           )}
         </Component>
       </Drawer>
-      <Grow in={open && navVariant === 'temporary' && !!collapsedIcon}>
+      <Grow in={open && navVariant === 'temporary'}>
         <IconButton
           className={classes.closeButton}
           style={{ left: navWidth + 16 }}
           onClick={setOpen}
           {...closeButtonProps}
         >
-          {collapsedIcon.inactive}
+          {chevronLeftIcon}
         </IconButton>
       </Grow>
     </Fragment>

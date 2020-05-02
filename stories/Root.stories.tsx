@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react'
-import { Root, Header, Nav, Content, Footer } from '../src'
+import { Root, Header, Nav, Content, Footer, NavListItem } from '../src'
 import {
   ThemeProvider,
   createMuiTheme,
@@ -9,15 +9,15 @@ import {
   Container,
   makeStyles,
   Theme,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText
+  List
 } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import { withKnobs, boolean, number, select } from '@storybook/addon-knobs'
 import { Position, Variant, Orientation, LayoutConfig } from '../src/util'
 import { LoremIpsum } from 'lorem-ipsum'
+import ChevronRight from '@material-ui/icons/ChevronRight'
+import ChevronLeft from '@material-ui/icons/ChevronLeft'
+import Menu from '@material-ui/icons/Menu'
 
 export default {
   title: 'Root',
@@ -145,7 +145,7 @@ const Example: FC<{ config: Partial<LayoutConfig>; content: ReactNode }> = ({
   return (
     <ThemeProvider theme={createMuiTheme()}>
       <Root style={{ minHeight: '100vh' }} config={config}>
-        <Header>
+        <Header chevronLeftIcon={<ChevronLeft />} menuIcon={<Menu />}>
           <Typography variant="h5">Application Name</Typography>
           <Box flexGrow={1} />
           <IconButton color="inherit">
@@ -153,6 +153,8 @@ const Example: FC<{ config: Partial<LayoutConfig>; content: ReactNode }> = ({
           </IconButton>
         </Header>
         <Nav
+          chevronLeftIcon={<ChevronLeft />}
+          chevronRightIcon={<ChevronRight />}
           header={
             // you can provide fixed header inside nav
             // change null to some react element
@@ -160,27 +162,9 @@ const Example: FC<{ config: Partial<LayoutConfig>; content: ReactNode }> = ({
           }
         >
           <List>
-            <ListItem button>
-              <ListItemIcon>{<AccountCircle />}</ListItemIcon>
-              <ListItemText
-                primary="Menu Item 1"
-                className={classes.menuItemText}
-              />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>{<AccountCircle />}</ListItemIcon>
-              <ListItemText
-                primary="Menu Item 2"
-                className={classes.menuItemText}
-              />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>{<AccountCircle />}</ListItemIcon>
-              <ListItemText
-                primary="Menu Item 3"
-                className={classes.menuItemText}
-              />
-            </ListItem>
+            <NavListItem text="Menu Item 1" icon={<AccountCircle />} />
+            <NavListItem text="Menu Item 2" icon={<AccountCircle />} />
+            <NavListItem text="Menu Item 3" icon={<AccountCircle />} />
           </List>
         </Nav>
         <Content className={classes.content}>

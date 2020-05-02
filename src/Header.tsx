@@ -10,8 +10,6 @@ import {
 } from '@material-ui/core'
 import { LayoutContext } from './Root'
 import { Layout, Position } from './util'
-import ChevronLeft from '@material-ui/icons/ChevronLeft'
-import Menu from '@material-ui/icons/Menu'
 
 export type HeaderProps = {
   className?: string
@@ -20,10 +18,8 @@ export type HeaderProps = {
   children?: ReactNode
   toolbarProps?: any
   menuButtonProps?: any
-  menuIcon?: {
-    active: ReactNode
-    inactive: ReactNode
-  }
+  chevronLeftIcon: ReactNode
+  menuIcon: ReactNode
   color?: PropTypes.Color
 }
 
@@ -77,10 +73,8 @@ const createGet = (
 
 const Header = ({
   className = '',
-  menuIcon = {
-    active: <ChevronLeft />,
-    inactive: <Menu />
-  },
+  chevronLeftIcon,
+  menuIcon,
   style = {},
   color = 'primary',
   children,
@@ -131,7 +125,7 @@ const Header = ({
             className={classes.menuButton}
             {...menuButtonProps}
           >
-            {open ? menuIcon.active : menuIcon.inactive || menuIcon.active}
+            {open ? chevronLeftIcon : menuIcon || chevronLeftIcon}
           </IconButton>
         )}
         {typeof children === 'function' ? children(ctx) : children}

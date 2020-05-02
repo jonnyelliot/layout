@@ -1,7 +1,15 @@
 import 'react-app-polyfill/ie11'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Root, Header, Nav, Content, Footer, LayoutConfig } from '../.'
+import {
+  Root,
+  Header,
+  Nav,
+  NavListItem,
+  Content,
+  Footer,
+  LayoutConfig
+} from '../.'
 import {
   ThemeProvider,
   createMuiTheme,
@@ -9,15 +17,15 @@ import {
   Box,
   IconButton,
   List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Container,
   makeStyles,
   Theme
 } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import { LoremIpsum } from 'lorem-ipsum'
+import ChevronRight from '@material-ui/icons/ChevronRight'
+import ChevronLeft from '@material-ui/icons/ChevronLeft'
+import Menu from '@material-ui/icons/Menu'
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -51,14 +59,13 @@ const config: Partial<LayoutConfig> = {
 }
 
 const theme = createMuiTheme()
-console.log(theme)
 
 const App = () => {
   const classes = useStyles()
   return (
     <ThemeProvider theme={theme}>
       <Root style={{ minHeight: '100vh' }} config={config}>
-        <Header>
+        <Header chevronLeftIcon={<ChevronLeft />} menuIcon={<Menu />}>
           <Typography variant="h5">Application Name</Typography>
           <Box flexGrow={1} />
           <IconButton color="inherit">
@@ -71,29 +78,13 @@ const App = () => {
             // change null to some react element
             ctx => null
           }
+          chevronLeftIcon={<ChevronLeft />}
+          chevronRightIcon={<ChevronRight />}
         >
           <List>
-            <ListItem button>
-              <ListItemIcon>{<AccountCircle />}</ListItemIcon>
-              <ListItemText
-                primary="Menu Item 1"
-                className={classes.menuItemText}
-              />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>{<AccountCircle />}</ListItemIcon>
-              <ListItemText
-                primary="Menu Item 2"
-                className={classes.menuItemText}
-              />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>{<AccountCircle />}</ListItemIcon>
-              <ListItemText
-                primary="Menu Item 3"
-                className={classes.menuItemText}
-              />
-            </ListItem>
+            <NavListItem text="Menu Item 1" icon={<AccountCircle />} />
+            <NavListItem text="Menu Item 2" icon={<AccountCircle />} />
+            <NavListItem text="Menu Item 3" icon={<AccountCircle />} />
           </List>
         </Nav>
         <Content className={classes.content}>
