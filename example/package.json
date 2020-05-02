@@ -8,9 +8,13 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "lorem-ipsum": "^2.0.3",
     "react-app-polyfill": "^1.0.0"
   },
   "alias": {
+    "@material-ui/core": "../node_modules/@material-ui/core",
+    "@material-ui/icons": "../node_modules/@material-ui/icons",
+    "@material-ui/styles": "../node_modules/@material-ui/styles",
     "react": "../node_modules/react",
     "react-dom": "../node_modules/react-dom/profiling",
     "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"

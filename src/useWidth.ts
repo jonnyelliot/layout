@@ -11,6 +11,7 @@ import { Theme } from '@material-ui/core'
  */
 export function useWidth() {
   const theme = useTheme<Theme>()
+  console.log(theme)
   const keys = [...theme.breakpoints.keys].reverse()
   return (
     keys.reduce((output: Breakpoint | null, key: Breakpoint) => {

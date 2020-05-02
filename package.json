@@ -23,6 +23,8 @@
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
+    "@material-ui/core": "4.x",
+    "@material-ui/icons": "4.x",
     "react": ">=16"
   },
   "husky": {
@@ -33,6 +35,8 @@
   "module": "dist/layout2.esm.js",
   "devDependencies": {
     "@babel/core": "^7.9.6",
+    "@material-ui/core": "4.9.10",
+    "@material-ui/icons": "^4.9.1",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-docs": "^5.3.18",
     "@storybook/addon-info": "^5.3.18",
@@ -57,9 +61,5 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
-  },
-  "dependencies": {
-    "@material-ui/core": "4.9.10",
-    "@material-ui/icons": "^4.9.1"
   }
 }
